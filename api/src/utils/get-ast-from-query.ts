@@ -11,7 +11,6 @@ import {
 	Accountability,
 	SchemaOverview,
 } from '../types';
-import database from '../database';
 import { cloneDeep } from 'lodash';
 import Knex from 'knex';
 import { getRelationType } from '../utils/get-relation-type';
@@ -61,6 +60,11 @@ export default async function getASTFromQuery(
 	// Prevent fields/deep from showing up in the query object in further use
 	delete query.fields;
 	delete query.deep;
+
+	if (!query.sort) {
+		const sortField = schema.collections.find((collectionInfo) => collectionInfo.collection === collection)?.sort_field;
+		query.sort = [{ column: sortField || schema.tables[collection].primary, order: 'asc' }];
+	}
 
 	ast.children = await parseFields(collection, fields, deep);
 
@@ -181,6 +185,10 @@ export default async function getASTFromQuery(
 					query: deep?.[relationalField] || {},
 					children: await parseFields(relatedCollection, nestedFields as string[]),
 				};
+
+				if (relationType === 'o2m' && !child!.query.sort) {
+					child!.query.sort = [{ column: relation.sort_field || relation.many_primary, order: 'asc' }];
+				}
 			}
 
 			if (child) {
