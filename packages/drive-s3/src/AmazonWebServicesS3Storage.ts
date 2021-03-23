@@ -43,6 +43,7 @@ export class AmazonWebServicesS3Storage extends Storage {
 		this.$driver = new S3({
 			accessKeyId: config.key,
 			secretAccessKey: config.secret,
+			s3ForcePathStyle: config.forcePathStyle,
 			...config,
 		});
 
@@ -299,5 +300,6 @@ export interface AmazonWebServicesS3StorageConfig extends ClientConfiguration {
 	key: string;
 	secret: string;
 	bucket: string;
+	forcePathStyle: boolean;
 	root?: string;
 }

@@ -182,13 +182,14 @@ Based on your configured driver, you must also provide the following configurati
 
 ### S3 (`s3`)
 
-| Variable                      | Description | Default Value      |
-| ----------------------------- | ----------- | ------------------ |
-| `STORAGE_<LOCATION>_KEY`      | User key    | --                 |
-| `STORAGE_<LOCATION>_SECRET`   | User secret | --                 |
-| `STORAGE_<LOCATION>_BUCKET`   | S3 Bucket   | --                 |
-| `STORAGE_<LOCATION>_REGION`   | S3 Region   | --                 |
-| `STORAGE_<LOCATION>_ENDPOINT` | S3 Endpoint | "s3.amazonaws.com" |
+| Variable                              | Description         | Default Value      |
+| ------------------------------------- | ------------------- | ------------------ |
+| `STORAGE_<LOCATION>_KEY`              | User key            | --                 |
+| `STORAGE_<LOCATION>_SECRET`           | User secret         | --                 |
+| `STORAGE_<LOCATION>_BUCKET`           | S3 Bucket           | --                 |
+| `STORAGE_<LOCATION>_REGION`           | S3 Region           | --                 |
+| `STORAGE_<LOCATION>_ENDPOINT`         | S3 Endpoint         | "s3.amazonaws.com" |
+| `STORAGE_<LOCATION>_FORCE_PATH_STYLE` | S3 Force path style | `false`            |
 
 ### Azure (`azure`)
 
